@@ -44,39 +44,50 @@
 <body>
   <div class="car-card" id="conductorDetails">
 
+    <div id="fichaDatos" class="ficha">
+      <h1>
+        Ficha del conductor
+      </h1>
+
+      <h2><strong>Hora Actual:</strong> <span id="reloj"></span></h2>
+
+      <p><strong>ID:</strong> <span id="id"></span></p>
+      <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+      <p><strong>Apellidos:</strong> <span id="apellidos"></span></p>
+      <p><strong>DNI:</strong> <span id="dni"></span></p>
+      <p><strong>foto:</strong> </p>      
+      <img src="https://drive.google.com/uc?id=11LsqNU_3jNsrwW551k77TiuNb5hDFY2q&export=download">
+      <img src="https://drive.google.com/uc?id=101E7xBnJ4e5svopV8rb7PTLfI3rm2aeA&export=download">
+      
+    </div>
 
 
   </div>
 
   <script>
+
+    function actualizarReloj() {
+      const relojElemento = document.getElementById('reloj');
+      const ahora = new Date();
+      const hora = ahora.getHours();
+      const minutos = ahora.getMinutes();
+      const segundos = ahora.getSeconds();
+      const horaFormateada = `${hora}:${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+      relojElemento.innerText = horaFormateada;
+    }
+
     function CargaDatos(datosConductor) {
       datosConductor = JSON.parse(datosConductor)
-      console.log(datosConductor);
-      var carDetails = document.getElementById("conductorDetails");
-      var fichaHTML = `
-      <h1>
-      Ficha de conductor
-    </h1>
-      <div class="conductor-property">
-           <label>Id:</label>
-           <span>${datosConductor.id}</span>
-      </div>
-      <div class="conductor-property">
-        <label>Nombre:</label>
-        <span>${datosConductor.nombre}</span>
-      </div>
-      <div class="conductor-property">
-        <label>Apellidos:</label>
-        <span>${datosConductor.apellidos}</span>
-      </div>
-      <div class="conductor-property">
-        <label>DNI:</label>
-        <span>${datosConductor.dni}</span>
-      </div>
-      
-    `;
 
-      carDetails.innerHTML = fichaHTML;
+      document.getElementById('id').innerText = datosConductor.id;
+      document.getElementById('nombre').innerText = datosConductor.nombre;
+      document.getElementById('apellidos').innerText = datosConductor.apellidos;
+      document.getElementById('dni').innerText = datosConductor.dni;
+
+      // Configurar el intervalo para actualizar el reloj cada segundo
+      setInterval(actualizarReloj, 1000);
+
+
     }
 
 
