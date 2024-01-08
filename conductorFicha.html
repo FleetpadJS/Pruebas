@@ -79,10 +79,10 @@
     function CargaDatos(datosConductor) {
       datosConductor = JSON.parse(datosConductor)
 
-      document.getElementById('id').innerText = datosConductor.id;
-      document.getElementById('nombre').innerText = datosConductor.nombre;
-      document.getElementById('apellidos').innerText = datosConductor.apellidos;
-      document.getElementById('dni').innerText = datosConductor.dni;
+      document.getElementById('id').innerText = datosConductor.id_Conductor.valorCampo;
+      document.getElementById('nombre').innerText = datosConductor.nombre.valorCampo;
+      document.getElementById('apellidos').innerText = datosConductor.apellidos.valorCampo;
+      document.getElementById('dni').innerText = datosConductor.dni.valorCampo;
 
       // Configurar el intervalo para actualizar el reloj cada segundo
       setInterval(actualizarReloj, 1000);
